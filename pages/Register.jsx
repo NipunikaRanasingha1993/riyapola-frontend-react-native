@@ -1,19 +1,41 @@
+import { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import instance from "../service/AxiosOrder/AxiosOrder";
+
 
 export default function Register({navigation}){
 
+    const [cusName,setCusName] = useState('');
+    const [cusContact,setCusContact] = useState('');
+    const [cusEmail,setCusEmail] = useState('');
+    const [cusPassword,setCusPassword] = useState('');
+
     const clickReg = () =>{
-        navigation.navigate('Login')
+        instance.post('/customer/register', {
+            name: cusName,
+            contact: cusContact,
+            email: cusEmail,
+            password: cusPassword
+          })
+        .then(function(response){
+            console.log(response);
+            // alert('You are now a customer....')
+            navigation.navigate('Login')
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+        
     }
 
     return(
         <View style={styles.container}>
             <Text style={styles.title}>Customer Registration</Text>
 
-            <TextInput style={styles.input} placeholder="Enter Your Name"/>
-            <TextInput style={styles.input} placeholder="Enter Your Contact"/>
-            <TextInput style={styles.input} placeholder="Enter Your Email"/>
-            <TextInput style={styles.input} placeholder="Enter Your Password"/>
+            <TextInput style={styles.input} placeholder="Enter Your Name" onChangeText={(val)=>setCusName(val)}/>
+            <TextInput style={styles.input} placeholder="Enter Your Contact" onChangeText={(val)=>setCusContact(val)}/>
+            <TextInput style={styles.input} placeholder="Enter Your Email" onChangeText={(val)=>setCusEmail(val)}/>
+            <TextInput style={styles.input} placeholder="Enter Your Password" onChangeText={(val)=>setCusPassword(val)}/>
             <TouchableOpacity onPress={clickReg} style={styles.btn}>
                 <Text style={styles.btnText}>Register</Text>
             </TouchableOpacity>
