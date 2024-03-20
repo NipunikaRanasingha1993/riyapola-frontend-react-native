@@ -1,15 +1,30 @@
 import { View ,Text, TextInput, TouchableOpacity, StyleSheet} from "react-native";
+import instance from "../service/AxiosOrder/AxiosOrder";
+import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({navigation}){
 
-    const clickLogin = () =>{
+    const [cusEmail,setCusEmail] = useState('');
+    const[cusPassword,setCusPassword] = useState('');
+
+    const clickLogin = async () =>{
+        const response = await instance.post('/customer/login', {
+            email: cusEmail,
+            password: cusPassword,
+          })
+          const data = response.data;
+          await AsyncStorage.setItem('stmToken',data.token)
+          const token = await AsyncStorage.getItem('stmToken')
+          console.log(token);
         navigation.navigate('DrawerNav')
     }
+
     return(
         <View style={styles.container}>
             <Text style={styles.title}>Customer Login</Text>
-            <TextInput style={styles.input} placeholder="Email"/>
-            <TextInput style={styles.input} placeholder="Password"/>
+            <TextInput style={styles.input} placeholder="Email" onChangeText={(val)=>setCusEmail(val)}/>
+            <TextInput style={styles.input} placeholder="Password" onChangeText={(val)=>setCusPassword(val)}/>
             <TouchableOpacity onPress={clickLogin} style={styles.btn}>
                 <Text style={styles.btnText}>Login</Text>
             </TouchableOpacity>
