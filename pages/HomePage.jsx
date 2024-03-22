@@ -3,10 +3,11 @@ import * as React from 'react';
 import { Avatar, Button, Card, Text } from 'react-native-paper';
 import { useEffect, useState } from "react";
 import instance from "../service/AxiosOrder/AxiosOrder";
+import { purple100 } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
 
 
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+// const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 
 export default function HomePage({ navigation }) {
@@ -59,13 +60,13 @@ export default function HomePage({ navigation }) {
 
                 <Text variant="titleLarge">{brand}</Text>
                 <Text variant="bodyMedium">{model}</Text>
-                <Text variant="bodyMedium">{transMode + "." + fuelType + "." + engineCap}</Text>
+                <Text variant="bodyMedium">{'TransMission Mode : ' + transMode + " | " + 'Fuel Type : ' + fuelType + " | " + 'Engine Capacity : ' + engineCap}</Text>
             </Card.Content>
 
-            <Card.Cover source={{ uri: carName }} />
+            <Card.Cover source={{ uri: `http://192.168.8.107:8080/${carName}` }} />
             <Card.Actions>
-                <Button>Cancel</Button>
-                <Button>Ok</Button>
+                {/* <Button>Cancel</Button> */}
+                <Button style={styles.btn3}>Reservation</Button>
             </Card.Actions>
         </Card>
 
@@ -85,17 +86,18 @@ export default function HomePage({ navigation }) {
                 <Text style={styles.btnText}>Go Register</Text>
             </TouchableOpacity>
 
+
             <FlatList
                 data={data}
-                renderItem={({ item }) =>(
+                renderItem={({ item }) => (
                     <Card1
-                    model={item.model}
-                    brand={item.brand}
-                    transMode={item.transMode}
-                    fuelType={item.fuelType}
-                    engineCap={item.engineCap}
-                    carName={item.carName}
-                 />
+                        model={item.model}
+                        brand={item.brand}
+                        transMode={item.transMode}
+                        fuelType={item.fuelType}
+                        engineCap={item.engineCap}
+                        carName={item.carName}
+                    />
                 )}
                 keyExtractor={item => item.id}
             />
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 25,
         color: 'skyblue',
-        marginTop: 30,
+        marginTop: 30
     },
 
     subTitle: {
@@ -142,11 +144,16 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 10
     },
 
     btnText: {
         color: 'white',
         justifyContent: 'center'
+    },
+
+    btn3: {
+        backgroundColor: 'purple',
     }
 })
