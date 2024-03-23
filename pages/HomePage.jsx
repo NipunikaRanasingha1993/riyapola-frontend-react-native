@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Avatar, Button, Card, Text } from 'react-native-paper';
 import { useEffect, useState } from "react";
 import instance from "../service/AxiosOrder/AxiosOrder";
-import { purple100 } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
 
 
 
@@ -66,7 +65,10 @@ export default function HomePage({ navigation }) {
             <Card.Cover source={{ uri: `http://192.168.8.107:8080/${carName}` }} />
             <Card.Actions>
                 {/* <Button>Cancel</Button> */}
-                <Button style={styles.btn3}>Reservation</Button>
+                {/* <Button style={styles.btn3}>Reservation</Button> */}
+                <TouchableOpacity style={styles.btn3}>
+                    <Text style={styles.btnText}>Reservation</Text>
+                </TouchableOpacity>
             </Card.Actions>
         </Card>
 
@@ -77,8 +79,11 @@ export default function HomePage({ navigation }) {
     return (
         <View style={styles.container}>
 
-            <Text style={styles.title}>WelCome to Riyapola Car</Text>
-            <Text style={styles.subTitle}>"Get ready to go your jurney with different kind of vehicles..."</Text>
+            <Text style={styles.title} variant="headlineLarge">WelCome To Riyapola</Text>
+            <Text style={styles.subTitle} variant="headlineMedium">"Get ready to go your jurney with different kind of vehicles..."</Text>
+
+            {/* <Text style={styles.title}>WelCome to Riyapola Car</Text>
+            <Text style={styles.subTitle}>"Get ready to go your jurney with different kind of vehicles..."</Text> */}
             <TouchableOpacity onPress={clickGoLogin} style={styles.btn1}>
                 <Text style={styles.btnText}>Go Login</Text>
             </TouchableOpacity>
@@ -86,11 +91,11 @@ export default function HomePage({ navigation }) {
                 <Text style={styles.btnText}>Go Register</Text>
             </TouchableOpacity>
 
-
             <FlatList
                 data={data}
                 renderItem={({ item }) => (
                     <Card1
+                    
                         model={item.model}
                         brand={item.brand}
                         transMode={item.transMode}
@@ -109,22 +114,23 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start',
-        // alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: 'black'
     },
 
     title: {
         fontSize: 25,
         color: 'skyblue',
-        marginTop: 30
+        marginTop: 20,
+        display: 'flex'
     },
 
     subTitle: {
         fontSize: 17,
         color: 'skyblue',
-        marginTop: 20,
-        marginBottom: 20
+        marginTop: 10,
+        marginBottom: 10
     },
 
     btn1: {
@@ -154,6 +160,10 @@ const styles = StyleSheet.create({
     },
 
     btn3: {
+        color: 'white',
         backgroundColor: 'purple',
+        padding: 10,
+        borderRadius: 20
+
     }
 })
