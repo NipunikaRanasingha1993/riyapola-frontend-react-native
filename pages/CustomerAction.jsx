@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
+import instance from "../service/AxiosOrder/AxiosOrder";
 
 export default function CustomerAction({navigation}){
 
@@ -8,6 +9,23 @@ export default function CustomerAction({navigation}){
         await AsyncStorage.removeItem('stmToken')
         navigation.navigate('HomePage')
     }
+
+    const deleteAct = (id) =>{
+        instance.delete('/customer/'+id)
+      .then(function (response) {
+        console.log(response);
+        alert('delete Successful.....')
+        // handle success
+        // getData(setData);
+      })
+      
+      .catch(function (error) {
+        console.log(error);
+        // handle error
+        alert('please try again later.....')
+      })
+    
+      }
 
     return(
         <View style={styles.container}>
@@ -17,7 +35,7 @@ export default function CustomerAction({navigation}){
             </TouchableOpacity>
         </View>
         <View style={{flex:1}}>
-            <TouchableOpacity style={styles.btn2}>
+            <TouchableOpacity style={styles.btn2} onPress={deleteAct}>
                 <Text style={styles.btnText}>Delete Account</Text>
             </TouchableOpacity>
 

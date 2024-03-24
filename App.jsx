@@ -9,6 +9,7 @@ import DrawerNav from './component/DrawerNav/DrawerNav';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from 'react-native-paper';
+import { View } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -24,37 +25,42 @@ export default function App() {
   //   }else{
   //     setLogin(false);
   //   }
-  // },[])
+  // },[]);
 
   return (
-    // <Text>
+    
+    // <View>
     //   {
     //     login ?
-    //     <DrawerNav/>
-    //     :
-    // <Text>
+    //       <DrawerNav/>
+    //        :
+
+    //   <View>
 
 
 
 
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
-        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
-        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-        <Stack.Screen name="DrawerNav" component={DrawerNav} options={{ headerShown: false }} />
-        {/* <Stack.Screen name="Reservations" component={Reservations} />
+
+
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
+            <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+            <Stack.Screen name="DrawerNav" component={DrawerNav} options={{ headerShown: false }} />
+            {/* <Stack.Screen name="Reservations" component={Reservations} />
       <Stack.Screen name="OldReservations" component={OldReservations} /> */}
-      </Stack.Navigator>
+          </Stack.Navigator>
 
-    </NavigationContainer>
+        </NavigationContainer>
 
-    //     </Text>
-    // }
+//       </View>
 
-    //     </Text>
+// }
 
+//     </View>
 
+  
 
 
 

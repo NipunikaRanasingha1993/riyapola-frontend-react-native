@@ -5,12 +5,7 @@ import { useEffect, useState } from "react";
 import instance from "../service/AxiosOrder/AxiosOrder";
 
 
-
-// const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
-
-
-export default function HomePage({ navigation }) {
-
+export default function Cars(){
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -45,13 +40,13 @@ export default function HomePage({ navigation }) {
     }
 
 
-    const clickGoLogin = () => {
-        navigation.navigate('Login')
-    }
+    // const clickGoLogin = () => {
+    //     navigation.navigate('Login')
+    // }
 
-    const clickGoReg = () => {
-        navigation.navigate('Register')
-    }
+    // const clickGoReg = () => {
+    //     navigation.navigate('Register')
+    // }
 
     const Card1 = ({id, model, brand, transMode, fuelType, engineCap, carName }) => (
 
@@ -87,12 +82,12 @@ export default function HomePage({ navigation }) {
 
             {/* <Text style={styles.title}>WelCome to Riyapola Car</Text>
             <Text style={styles.subTitle}>"Get ready to go your jurney with different kind of vehicles..."</Text> */}
-            <TouchableOpacity onPress={clickGoLogin} style={styles.btn1}>
+            {/* <TouchableOpacity onPress={clickGoLogin} style={styles.btn1}>
                 <Text style={styles.btnText}>Go Login</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={clickGoReg} style={styles.btn2}>
                 <Text style={styles.btnText}>Go Register</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <FlatList
                 data={data}
